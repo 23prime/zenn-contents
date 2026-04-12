@@ -8,6 +8,8 @@
       "Bash(git switch:*)",
       "Bash(gh pr view:*)",
       "Bash(gh pr create:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh pr-review:*)",
       "Bash(mv:*)"
     ],
     "ask": [
