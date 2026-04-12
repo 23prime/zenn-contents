@@ -90,10 +90,6 @@ description = "Initialize Zenn CLI"
 run = ["pnpm install --frozen-lockfile"]
 alias = "zi"
 
-[tasks.zenn-new-article]
-description = "Create a new Zenn article"
-run = "pnpm zenn new:article"
-alias = "zna"
 
 [tasks.zenn-preview]
 description = "Preview Zenn contents"

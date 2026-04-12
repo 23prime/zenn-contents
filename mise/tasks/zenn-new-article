@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# mise description="Create a new Zenn article (usage: mise run zenn-new-article -- <name>)"
+# mise alias="zna"
+set -eu
+
+name="${1:?Usage: mise run zenn-new-article -- <name>}"
+charset="abcdefghijklmnopqrstuvwxyz0123456789"
+length=8
+random=$(tr -dc "$charset" < /dev/urandom | head -c "$length")
+slug="${name}-${random}"
+pnpm zenn new:article --slug "$slug"
