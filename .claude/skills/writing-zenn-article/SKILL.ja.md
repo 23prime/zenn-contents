@@ -1,6 +1,6 @@
 ---
 name: writing-zenn-article
-description: このリポジトリで Zenn の記事を執筆・作成・編集するときに使う。CLI コマンド、frontmatter フィールド、Zenn 固有の markdown 記法、公開フローを網羅する。
+description: このリポジトリで Zenn の記事を執筆・作成・編集するときに使う。トピックの確認から PR 作成までのステップバイステップのワークフローに従う。
 translated_from: SKILL.md
 ---
 
@@ -10,44 +10,131 @@ translated_from: SKILL.md
 
 このリポジトリは GitHub 連携を通じて [23prime](https://zenn.dev/23prime) の Zenn 記事を管理する。記事は `articles/` に Markdown ファイルとして配置する。`main` ブランチへ push することで公開される。
 
-## 記事の作成
+## ワークフロー
+
+### 1. 記事内容の確認
+
+執筆前にユーザーと以下を確認する：
+
+- **トピック**: 何についての記事か
+- **ターゲット読者**: 誰が読む記事か（例: 初心者、経験のあるエンジニア）
+- **要点**: 読者に何を持ち帰ってほしいか
+- **タイプ**: `tech`（技術）または `idea`（意見・アイデア）
+- **Topics（タグ）**: 最大5個（例: `["mise", "cli"]`）
+
+### 2. アウトラインの提案
+
+確認した内容をもとにアウトラインを作成し、ユーザーに提示する。承認を得てから執筆を開始する。修正を求められた場合は改訂して再確認する。
+
+推奨するアウトライン構成：
+
+```md
+## はじめに
+- 背景・動機
+- この記事で扱う内容
+
+## <本編セクション 1>
+...
+
+## <本編セクション N>
+...
+
+## まとめ
+- 要点の振り返り
+- 次のステップや関連リソース（あれば）
+```
+
+### 3. ブランチの作成
+
+記事名（短く意味のある識別子）を `<name>` として使う：
+
+```bash
+git switch -c article/<name>
+```
+
+### 4. 記事ファイルの生成
 
 ```bash
 mise run zenn-new-article -- <name>
 ```
 
-`articles/<name>-<random>.md` が生成される。frontmatter の title・emoji・type・topics を編集する。slug を変更した場合は、ファイル名も合わせてリネームする:
+`articles/<name>-<random>.md` が作成される。frontmatter を編集する：
+
+```yaml
+---
+title: "記事タイトル"
+emoji: "🛠"
+type: "tech"
+topics: ["tag1", "tag2"]
+published: false
+---
+```
+
+slug を変更した場合は、ファイル名も合わせてリネームする：
 
 ```bash
 mv articles/<old-slug>.md articles/<new-slug>.md
 ```
 
-### Slug のルール
+#### Slug のルール
 
 - 12〜50文字
 - 小文字英字・数字・ハイフン（`-`）・アンダースコア（`_`）のみ使用可
 - URL パスおよびファイル名になる: `articles/<slug>.md`
 
-## Frontmatter リファレンス
+### 5. 記事の執筆
 
-```yaml
----
-title: "記事タイトル"          # 必須
-emoji: "🛠"                   # 必須 — 絵文字1文字
-type: "tech"                  # 必須 — "tech"（技術）または "idea"（アイデア）
-topics: ["mise", "cli"]       # タグ（最大5個）
-published: false              # false = 下書き、true = 公開
-published_at: "2026-04-12 09:00" # 任意 — JST、予約公開
----
+承認済みのアウトラインに沿って執筆する。必要に応じて Zenn 固有の記法を使用する（後述のリファレンスを参照）。
+
+執筆ルール：
+
+- h2〜h4 のみ使用する。h1 は記事タイトル用に予約されている。
+- 各セクション見出し（h2〜h4）の先頭に、内容にフィットする絵文字を1つ添える。
+- 段落間は空行で区切る（単一の改行は無視される）。
+- HTML タグは非サポート（`<br>` を除く）。
+
+### 6. レビュー
+
+Agent ツールで `reviewing-zenn-article` スキルを呼び出す：
+
+```js
+Agent({
+  subagent_type: "general-purpose",
+  description: "Zenn 記事のレビュー",
+  prompt: "reviewing-zenn-article スキルを使って ~/develop/zenn-contents の articles/<slug>.md をレビューして。"
+})
 ```
 
-**`--published` という CLI フラグは存在しない。** 公開するには frontmatter で `published: true` を設定する。
+レビューエージェントが報告した問題をすべて修正してから次に進む。
 
-## 執筆ガイドライン
+### 7. 公開設定
 
-### 見出し
+公開準備ができたら frontmatter で `published: true` を設定する。
 
-h2〜h4 を使う。h1 は記事タイトル用に予約されている。
+予約公開する場合は `published_at` も設定する（JST）：
+
+```yaml
+published: true
+published_at: "2026-04-12 09:00"
+```
+
+### 8. コミット・プッシュ
+
+```bash
+git add articles/<slug>.md
+git commit -m "docs: Add article about <topic>"
+git push -u origin article/<slug>
+```
+
+記事関連のコミット（新規記事・編集・下書き）には `docs` を使う。
+
+### 9. Pull Request の作成
+
+`main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
+
+---
+
+## リファレンス
 
 ### Zenn 固有の記法
 
@@ -120,7 +207,7 @@ $$
 
 ### 画像
 
-リポジトリルート直下の `images/<slug>/` に画像を配置し、**絶対パス**で参照する:
+リポジトリルート直下の `images/<slug>/` に画像を配置し、**絶対パス**で参照する：
 
 ```txt
 images/
@@ -139,55 +226,29 @@ images/
 - 相対パスは動作しない — 必ず `/images/...` で指定する
 - GitHub から画像を削除すると Zenn 上からも削除される
 
-### 注意事項
+### Frontmatter リファレンス
 
-- 単一の改行は無視される — 段落間は空行で区切る。
-- HTML タグは非サポート（`<br>` を除く）。
+```yaml
+---
+title: "記事タイトル"          # 必須
+emoji: "🛠"                   # 必須 — 絵文字1文字
+type: "tech"                  # 必須 — "tech"（技術）または "idea"（アイデア）
+topics: ["mise", "cli"]       # タグ（最大5個）
+published: false              # false = 下書き、true = 公開
+published_at: "2026-04-12 09:00" # 任意 — JST、予約公開
+---
+```
 
-## プレビュー
+**`--published` という CLI フラグは存在しない。** 公開するには frontmatter で `published: true` を設定する。
+
+### プレビュー
 
 ```bash
 mise run zenn-preview
 # http://localhost:8000 が開く
 ```
 
-## 公開フロー
-
-1. 記事の名前を決める（例: `mise-dev-environment`）。
-
-2. ブランチを作成する:
-
-    ```bash
-    git switch -c article/<name>
-    ```
-
-3. 記事ファイルを生成する:
-
-    ```bash
-    mise run zenn-new-article -- <name>
-    ```
-
-    `articles/<name>-<random>.md` が作成される。
-
-4. 記事を執筆する。`mise run zenn-preview` でプレビュー確認する。
-
-5. 公開する準備ができたら frontmatter で `published: true` を設定する。
-
-6. コミット・プッシュする:
-
-    ```bash
-    git add articles/<slug>.md
-    git commit -m "docs: Add article about <topic>"
-    git push -u origin article/<slug>
-    ```
-
-7. `main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
-
-## コミットタイプ
-
-記事関連のコミット（新規記事・編集・下書き）には `docs` を使う。
-
-## よくある間違い
+### よくある間違い
 
 | 間違い | 修正方法 |
 | ------- | -------- |
