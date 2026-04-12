@@ -118,6 +118,27 @@ $$
 ![alt](/path/to/img.png =500x)
 ```
 
+### 画像
+
+リポジトリルート直下の `images/<slug>/` に画像を配置し、**絶対パス**で参照する:
+
+```txt
+images/
+  <slug>/
+    image1.png
+```
+
+```md
+![代替テキスト](/images/<slug>/image1.png)
+![代替テキスト](/images/<slug>/image1.png "キャプション")
+![代替テキスト](/images/<slug>/image1.png =500x)
+```
+
+- 対応フォーマット: `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`
+- ファイルサイズ上限: 3MB
+- 相対パスは動作しない — 必ず `/images/...` で指定する
+- GitHub から画像を削除すると Zenn 上からも削除される
+
 ### 注意事項
 
 - 単一の改行は無視される — 段落間は空行で区切る。

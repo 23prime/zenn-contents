@@ -119,6 +119,27 @@ $$
 ![alt](/path/to/img.png =500x)
 ```
 
+### Images
+
+Place images under `images/<slug>/` in the repository root and reference them with an **absolute path**:
+
+```txt
+images/
+  <slug>/
+    image1.png
+```
+
+```md
+![alt text](/images/<slug>/image1.png)
+![alt text](/images/<slug>/image1.png "キャプション")
+![alt text](/images/<slug>/image1.png =500x)
+```
+
+- Supported formats: `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`
+- Max file size: 3 MB
+- Relative paths do not work — always use `/images/...`
+- Deleting an image from GitHub also removes it from Zenn
+
 ### Notes
 
 - Single line breaks are ignored — use a blank line between paragraphs.
