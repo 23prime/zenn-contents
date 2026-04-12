@@ -20,3 +20,4 @@
 - [Zenn CLI](https://zenn.dev/zenn/articles/zenn-cli-guide)
 - [アカウントにGitHubリポジトリを連携してZennのコンテンツを管理する](https://zenn.dev/zenn/articles/connect-to-github)
 - [Zenn CLIをインストールする](https://zenn.dev/zenn/articles/install-zenn-cli)
+- [Zennのスラッグ（slug）とは](https://zenn.dev/zenn/articles/what-is-slug)
