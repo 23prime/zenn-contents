@@ -16,7 +16,11 @@ translated_from: SKILL.md
 mise run zenn-new-article
 ```
 
-実行後、`articles/` に生成されたファイルを開き、frontmatter の slug・title・emoji・type・topics を編集する。
+実行後、`articles/` に生成されたファイルを開き、frontmatter の slug・title・emoji・type・topics を編集する。slug を変更した場合は、ファイル名も合わせてリネームする:
+
+```bash
+mv articles/<old-slug>.md articles/<new-slug>.md
+```
 
 ### Slug のルール
 
@@ -132,23 +136,23 @@ mise run zenn-preview
 
 2. slug を使ってブランチを作成する:
 
-```bash
-git switch -c article/<slug>
-```
+    ```bash
+    git switch -c article/<slug>
+    ```
 
-1. 記事を執筆する。`mise run zenn-preview` でプレビュー確認する。
+3. 記事を執筆する。`mise run zenn-preview` でプレビュー確認する。
 
-2. 公開する準備ができたら frontmatter で `published: true` を設定する。
+4. 公開する準備ができたら frontmatter で `published: true` を設定する。
 
-3. コミット・プッシュする:
+5. コミット・プッシュする:
 
-```bash
-git add articles/<slug>.md
-git commit -m "docs: Add article about <topic>"
-git push -u origin article/<slug>
-```
+    ```bash
+    git add articles/<slug>.md
+    git commit -m "docs: Add article about <topic>"
+    git push -u origin article/<slug>
+    ```
 
-1. `main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
+6. `main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
 
 ## コミットタイプ
 
