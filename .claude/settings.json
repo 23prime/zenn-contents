@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mise run:*)"
+      "Bash(mise run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git switch:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr create:*)",
+      "Bash(mv:*)"
+    ],
+    "ask": [
+      "Bash(git push --force:*)"
     ]
   },
   "hooks": {
