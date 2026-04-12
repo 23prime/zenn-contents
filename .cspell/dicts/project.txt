@@ -1,6 +1,5 @@
 applescript
 pipx
-Solana
 supplychain
 urandom
 zenn
