@@ -55,7 +55,21 @@ Check the article against each of the following criteria. Report findings in a s
 - [ ] Sentences are clear and concise
 - [ ] No awkward or unnatural Japanese expressions
 - [ ] Consistent tone and register throughout
-- [ ] Paragraphs are separated by blank lines (not single line breaks)
+- [ ] All rules defined in `docs/WRITING_RULES.md` are followed (read the file and check each rule)
+
+#### References
+
+- [ ] Every URL cited inline in the article body (e.g., `（[参考](https://...)）`) also appears in the `## 参考` section at the end
+
+#### Zenn community guidelines
+
+Read `references/zenn-guideline.md` and check:
+
+- [ ] Includes personal experience or original analysis (not just a restatement of official docs)
+- [ ] Title accurately reflects the content (no clickbait or exaggeration)
+- [ ] Article has an overview near the top and makes the target audience clear
+- [ ] No advertising or promotional intent as the primary purpose
+- [ ] Sources are cited where content is quoted; stays within fair-use bounds
 
 #### Zenn compliance
 
