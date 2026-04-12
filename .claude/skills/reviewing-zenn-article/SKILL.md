@@ -36,7 +36,7 @@ Check the article against each of the following criteria. Report findings in a s
 - [ ] Main sections follow a logical order
 - [ ] Has a conclusion or summary that recaps key points
 - [ ] Uses h2–h4 only (no h1 in the body)
-- [ ] Each section heading (h2–h4) starts with a fitting emoji
+- [ ] Each section heading (h2–h3) starts with a fitting emoji
 
 #### Target audience
 
