@@ -23,6 +23,9 @@ shellcheck = "0.11"
 lefthook = "2"
 cspell = "9"
 
+# Zenn CLI
+pnpm = "10"
+
 
 # ================================================================
 # Tasks
@@ -80,3 +83,19 @@ alias = "ghc"
 description = "Check spelling"
 run = "cspell . --gitignore --verbose"
 alias = "sc"
+
+# Zenn CLI
+[tasks.zenn-setup]
+description = "Initialize Zenn CLI"
+run = ["pnpm install --frozen-lockfile"]
+alias = "zi"
+
+[tasks.zenn-new-article]
+description = "Create a new Zenn article"
+run = "pnpm zenn new:article"
+alias = "zna"
+
+[tasks.zenn-preview]
+description = "Preview Zenn contents"
+run = "pnpm zenn preview"
+alias = "zp"
