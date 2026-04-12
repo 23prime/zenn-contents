@@ -1,3 +1,5 @@
 applescript
+pipx
+supplychain
 urandom
 zenn

@@ -85,12 +85,17 @@ mv articles/<old-slug>.md articles/<new-slug>.md
 
 Follow the approved outline. Apply Zenn-specific syntax as needed (see Reference section below).
 
-Writing rules:
+Writing rules are defined in `docs/WRITING_RULES.md`. Read and follow them when writing.
 
-- Use h2–h4 only. h1 is reserved for the article title.
-- Add a fitting emoji at the start of each section heading (h2–h4). Choose an emoji that matches the content of that section.
-- Separate paragraphs with a blank line (single line breaks are ignored).
-- HTML tags are not supported (except `<br>`).
+Follow the Zenn community guidelines for writing (see `references/zenn-guideline.md`):
+
+- Include personal experience or original analysis — not just summaries of official docs
+- Title must accurately reflect the content (no clickbait)
+- Start with an overview and define the target audience
+- Verify the accuracy of any AI-generated content before publishing
+- Cite sources when quoting; stay within fair-use bounds
+
+Any URL cited inline in the article body (e.g., `（[参考](https://...)）`) must also appear as an entry in the `## 参考` section at the end of the article.
 
 ### 6. Review
 
