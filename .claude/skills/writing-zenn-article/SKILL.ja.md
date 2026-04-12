@@ -13,10 +13,10 @@ translated_from: SKILL.md
 ## 記事の作成
 
 ```bash
-mise run zenn-new-article
+mise run zenn-new-article -- <name>
 ```
 
-実行後、`articles/` に生成されたファイルを開き、frontmatter の slug・title・emoji・type・topics を編集する。slug を変更した場合は、ファイル名も合わせてリネームする:
+`articles/<name>-<random>.md` が生成される。frontmatter の title・emoji・type・topics を編集する。slug を変更した場合は、ファイル名も合わせてリネームする:
 
 ```bash
 mv articles/<old-slug>.md articles/<new-slug>.md
@@ -132,19 +132,27 @@ mise run zenn-preview
 
 ## 公開フロー
 
-1. `mise run zenn-new-article` を実行し、`articles/` に生成された slug を確認する。
+1. 記事の名前を決める（例: `mise-dev-environment`）。
 
-2. slug を使ってブランチを作成する:
+2. ブランチを作成する:
 
     ```bash
-    git switch -c article/<slug>
+    git switch -c article/<name>
     ```
 
-3. 記事を執筆する。`mise run zenn-preview` でプレビュー確認する。
+3. 記事ファイルを生成する:
 
-4. 公開する準備ができたら frontmatter で `published: true` を設定する。
+    ```bash
+    mise run zenn-new-article -- <name>
+    ```
 
-5. コミット・プッシュする:
+    `articles/<name>-<random>.md` が作成される。
+
+4. 記事を執筆する。`mise run zenn-preview` でプレビュー確認する。
+
+5. 公開する準備ができたら frontmatter で `published: true` を設定する。
+
+6. コミット・プッシュする:
 
     ```bash
     git add articles/<slug>.md
@@ -152,7 +160,7 @@ mise run zenn-preview
     git push -u origin article/<slug>
     ```
 
-6. `main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
+7. `main` を対象に Pull Request を作成する。マージされると Zenn が自動的に同期する。
 
 ## コミットタイプ
 

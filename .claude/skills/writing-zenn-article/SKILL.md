@@ -12,10 +12,10 @@ This repository manages [23prime](https://zenn.dev/23prime)'s Zenn articles via 
 ## Creating an Article
 
 ```bash
-mise run zenn-new-article
+mise run zenn-new-article -- <name>
 ```
 
-A file with a random slug is generated in `articles/`. Edit the frontmatter (slug, title, emoji, type, topics) as needed. If you change the slug, rename the file to match:
+Creates `articles/<name>-<random>.md` with a unique slug. Edit the frontmatter (title, emoji, type, topics) as needed. If you change the slug, rename the file to match:
 
 ```bash
 mv articles/<old-slug>.md articles/<new-slug>.md
@@ -133,19 +133,27 @@ mise run zenn-preview
 
 ## Publishing Workflow
 
-1. Run `mise run zenn-new-article` and confirm the generated slug in `articles/`.
+1. Decide on a name for the article (e.g. `mise-dev-environment`).
 
-2. Create a branch using the slug:
+2. Create a branch:
 
     ```bash
-    git switch -c article/<slug>
+    git switch -c article/<name>
     ```
 
-3. Write the article. Preview with `mise run zenn-preview`.
+3. Generate the article file:
 
-4. When ready to publish, set `published: true` in frontmatter.
+    ```bash
+    mise run zenn-new-article -- <name>
+    ```
 
-5. Commit and push:
+    A file named `articles/<name>-<random>.md` is created.
+
+4. Write the article. Preview with `mise run zenn-preview`.
+
+5. When ready to publish, set `published: true` in frontmatter.
+
+6. Commit and push:
 
     ```bash
     git add articles/<slug>.md
@@ -153,7 +161,7 @@ mise run zenn-preview
     git push -u origin article/<slug>
     ```
 
-6. Open a Pull Request targeting `main`. Zenn syncs automatically when the PR is merged.
+7. Open a Pull Request targeting `main`. Zenn syncs automatically when the PR is merged.
 
 ## Commit Type
 
