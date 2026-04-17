@@ -1,5 +1,6 @@
 applescript
 archlinux
+blkid
 balena
 EFISTUB
 inodes
