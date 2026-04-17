@@ -3,7 +3,7 @@ title: "mise で Minimum Release Age 的なものを設定する"
 emoji: "🔒"
 type: "tech"
 topics: ["mise", "security", "supplychain", "cli", "devtools"]
-published: false
+published: true
 ---
 
 皆さんは mise 使ってますか？
