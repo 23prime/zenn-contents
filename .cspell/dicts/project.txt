@@ -1,5 +1,16 @@
 applescript
+archlinux
+blkid
+balena
+EFISTUB
+inodes
+mkinitcpio
+nlinks
+nvme
 pipx
+renesas
 supplychain
+ucode
 urandom
+xhci
 zenn
