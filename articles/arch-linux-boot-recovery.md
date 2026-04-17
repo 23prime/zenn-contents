@@ -163,7 +163,8 @@ mkinitcpio -P
 `-P` は全プリセットを処理するオプションです。
 通常版と fallback 版の両方が作成されます。
 
-fallback 生成時に `WARNING: Possibly missing firmware for module: 'ast', 'xhci_pci_renesas', ...` のような警告が出ますが、これは fallback に含まれる汎用ドライバ向けのもので、ThinkPad には無関係なハードウェア（サーバー用 RAID や古い GPU など）のファームウェアが存在しないことを示しています。
+fallback 生成時に `WARNING: Possibly missing firmware for module: 'ast', 'xhci_pci_renesas', ...` のような警告が出ることがあります。今回の ThinkPad 環境では無関係なデバイス向けだったため実害はありませんでした。
+ただし環境によっては必要なファームウェアが不足している可能性があるため、自分のハードに関係するモジュール名が出た場合は追加確認してください。
 通常版では autodetect が効くので問題ありません。
 
 ### ✅ 8. 確認
