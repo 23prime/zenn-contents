@@ -3,7 +3,7 @@ title: "今日もまた Arch Linux が壊れたので直した"
 emoji: "🐧"
 type: "tech"
 topics: ["archlinux", "linux", "xfs", "mkinitcpio", "recovery"]
-published: false
+published: true
 ---
 
 ## 💥 起きたこと
