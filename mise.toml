@@ -112,3 +112,14 @@ alias = "zi"
 description = "Preview Zenn contents"
 run = "pnpm zenn preview"
 alias = "zp"
+
+# mise lock
+[tasks.lock-fix]
+description = "Update mise.lock"
+run = "mise lock"
+alias = "lf"
+
+[tasks.lock-check]
+description = "Check mise.lock is up to date"
+run = ["mise lock", "git diff --exit-code -- mise.lock"]
+alias = "lc"
