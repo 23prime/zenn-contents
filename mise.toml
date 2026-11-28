@@ -20,7 +20,7 @@ markdownlint-cli2 = "0.24.2"
 # GitHub Actions
 jactionlint = "2"
 shellcheck = "0.11"
-zizmor = "1.32.0"
+zizmor = "1.33.1"
 
 # Git
 lefthook = "2.2.3"
